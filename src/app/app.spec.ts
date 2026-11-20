@@ -5,8 +5,7 @@ describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   it('should create the app', () => {
@@ -15,9 +14,15 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it(`should have the 'lifecycle-hooks' title`, () => {
     const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('lifecycle-hooks');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('Hello, lifecycle-hooks');
   });
